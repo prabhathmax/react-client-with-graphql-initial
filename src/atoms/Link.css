@@ -1,0 +1,22 @@
+.root {
+  color: $link;
+  text-decoration: none;
+}
+
+.primary {
+  color: $primary;
+}
+
+.root:hover {
+  color: $linkHover;
+  text-decoration: none;
+}
+
+.primary:hover {
+  color: $primary;
+  text-shadow: 0 0 1px #a16c0f;
+}
+
+.unstyled {
+  color: inherit;
+}

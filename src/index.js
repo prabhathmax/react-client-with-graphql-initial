@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-client';
@@ -10,6 +11,10 @@ import { createUploadLink } from 'apollo-upload-client';
 import App from './App';
 
 import './index.css';
+import store from './store';
+import syncHistory from '../src/utils/syncHistory';
+
+store.dispatch(syncHistory.initialAction());
 
 /* apollo client config start */
 const uploadLink = createUploadLink({ uri: process.env.REACT_APP_GRAPHQL_ENDPOINT });
@@ -46,9 +51,11 @@ const client = new ApolloClient({
 
 const root = (
     <ApolloProvider client={client}>
+        <Provider store={store}>
             <BrowserRouter>
                 <App />
             </BrowserRouter>
+        </Provider>
     </ApolloProvider>
 );
 
